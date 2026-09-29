@@ -14,8 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-	title: 'Restora',
-	description: 'Minimal design foundation for Restora.',
+	title: 'Ember & Oak | Lagos',
+	description: 'Open-grill West African dining in the heart of Lagos.',
+};
+
+export const viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }) {

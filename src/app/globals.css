@@ -91,6 +91,115 @@
 }
 
 @layer utilities {
+	.mobile-menu-line {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: block;
+		width: 1.25rem;
+		height: 1px;
+		background: currentColor;
+		transform: translateX(-50%);
+		transition:
+			transform 180ms ease,
+			opacity 180ms ease;
+	}
+
+	.mobile-menu-line:nth-child(1) {
+		transform: translate(-50%, -0.375rem);
+	}
+
+	.mobile-menu-line:nth-child(2) {
+		transform: translate(-50%, 0);
+	}
+
+	.mobile-menu-line:nth-child(3) {
+		transform: translate(-50%, 0.375rem);
+	}
+
+	details[open] .mobile-menu-line:nth-child(1) {
+		transform: translate(-50%, 0) rotate(45deg);
+	}
+
+	details[open] .mobile-menu-line:nth-child(2) {
+		opacity: 0;
+	}
+
+	details[open] .mobile-menu-line:nth-child(3) {
+		transform: translate(-50%, 0) rotate(-45deg);
+	}
+
+	@keyframes hero-image-enter {
+		from {
+			opacity: 0.7;
+			transform: scale(1.08) translateX(-8%);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1) translateX(0);
+		}
+	}
+
+	@keyframes hero-content-enter {
+		from {
+			opacity: 0;
+			transform: translateX(-2rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes section-enter {
+		from {
+			opacity: 0;
+			transform: translateY(1.5rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.hero-image-enter {
+		animation: hero-image-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.hero-content-enter {
+		animation: hero-content-enter 0.8s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.section-enter {
+		animation: section-enter 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-image-enter,
+		.hero-content-enter,
+		.section-enter {
+			animation: none;
+		}
+	}
+
+	.logo-wordmark {
+		color: var(--color-oak);
+		font-family: 'Fraunces', Georgia, serif;
+		font-size: 1.375rem;
+		font-weight: 600;
+		line-height: normal;
+		font-style: normal;
+	}
+
+	.logo-ampersand {
+		color: var(--color-ember);
+		font-weight: 600;
+		font-family: 'Fraunces';
+		font-size: 1.375rem;
+		font-style: normal;
+		line-height: normal;
+	}
+
 	.font-display {
 		font-family: var(--font-display);
 	}

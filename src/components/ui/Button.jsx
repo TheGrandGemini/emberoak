@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const variants = {
 	primary:
 		'bg-ember text-white hover:brightness-95 active:brightness-90 focus-visible:ring-2 focus-visible:ring-ember/40 shadow-subtle',
@@ -31,10 +33,13 @@ export default function Button({
 	const isDisabled = disabled || loading;
 
 	return (
-		<button
+		<motion.button
 			type={type}
 			disabled={isDisabled}
 			className={`${baseClasses} ${variants[variant] || variants.primary} ${sizes[size] || sizes.md} ${className}`.trim()}
+			whileHover={isDisabled ? undefined : { y: -2, scale: 1.02 }}
+			whileTap={isDisabled ? undefined : { scale: 0.97 }}
+			transition={{ type: 'spring', stiffness: 420, damping: 22 }}
 			{...props}>
 			{loading ? (
 				<span className='inline-flex items-center gap-2'>
@@ -47,6 +52,6 @@ export default function Button({
 			) : (
 				children
 			)}
-		</button>
+		</motion.button>
 	);
 }
