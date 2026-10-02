@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from 'next/font/google';
+import Header from '@/components/layout/Header';
 import '@fontsource/fraunces/index.css';
 import '@fontsource/inter/index.css';
 import './globals.css';
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
 			lang='en'
 			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
 			<body className='min-h-full flex flex-col bg-background text-primary'>
+				<Header />
 				{children}
 			</body>
 		</html>

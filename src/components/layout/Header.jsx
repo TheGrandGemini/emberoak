@@ -14,15 +14,33 @@ const Header = () => {
 	const links = [
 		{ label: 'Menu', href: '/menu' },
 		{ label: 'Reservations', href: '/reservations' },
-		{ label: 'Hours & Location', href: '/location' },
+		{ label: 'Hours & Location', href: '/#location' },
 	];
 
 	const openOrderModal = () => {
 		setIsOrderOpen(true);
 	};
 
+	const getLinkHref = (href) =>
+		href === '/#location' && pathname === '/' ? '#location' : href;
+	const isMenuPage = pathname === '/menu';
+
+	const handleLocationClick = (event) => {
+		if (pathname !== '/') return;
+
+		event.preventDefault();
+		document.getElementById('location')?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+
+		const menu = event.currentTarget.closest('details');
+		if (menu) menu.open = false;
+		window.history.replaceState(null, '', '#location');
+	};
+
 	return (
-		<header className='relative z-50 flex h-22 items-center justify-between bg-surface px-5 sm:px-8 lg:px-20'>
+		<header className='sticky top-0 z-50 flex h-22 items-center justify-between bg-surface border-b-2 border-[#e4e0d9] px-5 sm:px-8 lg:px-20'>
 			<Logo />
 
 			<div className='flex items-center gap-8'>
@@ -35,7 +53,10 @@ const Header = () => {
 								key={link.href}
 								whileHover={{ y: -1 }}>
 								<Link
-									href={link.href}
+									href={getLinkHref(link.href)}
+									onClick={
+										link.href === '/#location' ? handleLocationClick : undefined
+									}
 									className={`font-mono text-sm font-normal transition-colors ${isActive ? 'text-ember' : 'text-[#4d473d] hover:text-ember'}`}>
 									{link.label}
 								</Link>
@@ -51,7 +72,7 @@ const Header = () => {
 							size='lg'
 							onClick={openOrderModal}
 							className='h-10 rounded-[0.625rem] px-5 text-[0.8125rem] font-semibold text-surface'>
-							Order Now
+							{isMenuPage ? 'Cart · 0' : 'Order Now'}
 						</Button>
 					</div>
 
@@ -66,7 +87,12 @@ const Header = () => {
 								{links.map((link) => (
 									<Link
 										key={link.href}
-										href={link.href}
+										href={getLinkHref(link.href)}
+										onClick={
+											link.href === '/#location'
+												? handleLocationClick
+												: undefined
+										}
 										className='rounded-6 px-3 py-3 font-mono text-sm text-[#4d473d] transition-colors hover:bg-muted hover:text-ember'>
 										{link.label}
 									</Link>
@@ -75,7 +101,7 @@ const Header = () => {
 									type='button'
 									onClick={openOrderModal}
 									className='mt-2 rounded-6 bg-ember px-3 py-3 text-left font-mono text-sm text-white'>
-									Order Now
+									{isMenuPage ? 'Cart · 0' : 'Order Now'}
 								</button>
 							</nav>
 						</div>

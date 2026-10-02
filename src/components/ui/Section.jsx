@@ -4,10 +4,12 @@ export default function Section({
 	title,
 	className = '',
 	contentClassName = '',
+	...props
 }) {
 	return (
 		<section
-			className={`section-enter bg-surface px-5 py-20 sm:px-8 lg:px-12 ${className}`}>
+			{...props}
+			className={`section-enter px-5 py-20 sm:px-8 lg:px-12 ${className}`}>
 			<div className={`mx-auto max-w-6xl ${contentClassName}`}>
 				{(eyebrow || title) && (
 					<header className='mb-12 text-center'>

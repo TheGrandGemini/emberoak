@@ -15,7 +15,7 @@ export default function ServiceCard({ title, copy, index = 0 }) {
 				damping: 24,
 				delay: index * 0.1,
 			}}
-			className='min-h-40 rounded-12 border border-border bg-surface px-7 py-8 sm:flex sm:min-h-24 sm:items-center sm:justify-center sm:px-4 sm:py-5 lg:block lg:min-h-40 lg:px-8 lg:py-8'>
+			className='min-h-40 rounded-[0.875rem] border border-border bg-surface px-7 py-8 sm:flex sm:min-h-24 sm:items-center sm:justify-center sm:px-4 sm:py-5 lg:block lg:min-h-40 lg:px-8 lg:py-8'>
 			<h3 className='font-sans text-xl font-semibold leading-tight text-primary sm:text-center lg:text-left'>
 				{title}
 			</h3>

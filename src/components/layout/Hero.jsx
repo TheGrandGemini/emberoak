@@ -11,7 +11,7 @@ export default function Hero() {
 				animate={{ x: 0, scale: 1, opacity: 1 }}
 				transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
 				className='hero-image-enter pointer-events-none absolute inset-0 z-0 bg-cover bg-center'
-				style={{ backgroundImage: "url('/assets/01_interior.jpg')" }}
+				style={{ backgroundImage: "url('/assets/00_interior.jpg')" }}
 			/>
 			<div
 				className='pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(23,19,15,0.34)_0%,rgba(23,19,15,0.04)_35%,rgba(23,19,15,0.28)_100%)]'

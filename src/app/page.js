@@ -1,5 +1,7 @@
-import Header from '@/components/layout/Header';
+import FooterSection from '@/components/layout/FooterSection';
 import Hero from '@/components/layout/Hero';
+import LocationSection from '@/components/layout/LocationSection';
+import StorySection from '@/components/layout/StorySection';
 import DishCard from '@/components/ui/DishCard';
 import Section from '@/components/ui/Section';
 import ServiceCard from '@/components/ui/ServiceCard';
@@ -9,21 +11,21 @@ const dishes = [
 		name: 'Suya-Spiced Grilled Chicken',
 		description: 'Charcoal-grilled, yaji spice, pickled onion',
 		price: '₦7,300',
-		image: '/assets/04_grilled_chicken.jpg',
+		image: '/assets/02_chicken.png',
 		alt: 'Suya-spiced grilled chicken served with herbs',
 	},
 	{
 		name: 'Jollof Rice + Grilled Chicken',
 		description: 'Smoked party jollof, char-grilled thigh',
 		price: '₦6,800',
-		image: '/assets/03_jollof_rice.jpg',
+		image: '/assets/01_jollof_rice.png',
 		alt: 'A bowl of richly colored jollof rice',
 	},
 	{
 		name: 'Peppered Goat Meat + Plantain',
 		description: 'Slow-braised, scotch bonnet, fried plantain',
 		price: '₦8,200',
-		image: '/assets/05_peppered_goatmeat.jpg',
+		image: '/assets/06_goatmeat.jpg',
 		alt: 'A colorful plate of West African food',
 	},
 ];
@@ -46,13 +48,12 @@ const serviceOptions = [
 export default function Home() {
 	return (
 		<>
-			<Header />
 			<main>
 				<Hero />
 				<Section
 					eyebrow="Today's picks"
 					title='What the grill is doing best right now'
-					className='py-20 sm:py-24 lg:py-28'>
+					className=' bg-surface py-20 sm:py-24 lg:py-28'>
 					<div className='-mx-5 flex snap-x snap-mandatory touch-pan-x gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:p-0'>
 						{dishes.map((dish, index) => (
 							<DishCard
@@ -66,7 +67,7 @@ export default function Home() {
 				</Section>
 				<Section
 					title="However you'd like it"
-					className='bg-background py-20 sm:py-24 lg:py-28'>
+					className='bg-[#faf9f7] py-20 sm:py-24 lg:py-28'>
 					<div className='grid grid-cols-1 gap-5 sm:grid-cols-3'>
 						{serviceOptions.map((option, index) => (
 							<ServiceCard
@@ -77,6 +78,9 @@ export default function Home() {
 						))}
 					</div>
 				</Section>
+				<StorySection />
+				<LocationSection />
+				<FooterSection />
 			</main>
 		</>
 	);
