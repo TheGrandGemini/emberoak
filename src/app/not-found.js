@@ -5,13 +5,13 @@ export default function NotFound() {
 		<>
 			<main
 				className='not-found-enter relative isolate flex min-h-[calc(100svh-5.5rem)] items-center justify-center overflow-hidden bg-cover bg-center px-5 py-20 text-center sm:px-8'
-				style={{ backgroundImage: "url('/assets/01_interior.jpg')" }}>
+				style={{ backgroundImage: "url('/assets/00_interior.jpg')" }}>
 				<div
-					className='pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(23,19,15,0.58),rgba(23,19,15,0.78))]'
+					className='not-found-overlay pointer-events-none absolute inset-0 -z-10'
 					aria-hidden='true'
 				/>
 				<div className='relative z-10 max-w-xl text-white'>
-					<p className='text-label text-[#E9C0B6]'>Ember &amp; Oak</p>
+					<p className='text-label text-ember-highlight'>Ember &amp; Oak</p>
 					<h1 className='text-display mt-5'>This page is empty.</h1>
 					<p className='mx-auto mt-6 max-w-md text-body-lg text-white/85'>
 						The page you are looking for has moved, or it may not be on

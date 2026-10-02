@@ -1,9 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
 
 export default function Hero() {
+	const router = useRouter();
+
 	return (
 		<section className='relative isolate min-h-[calc(100svh-5.5rem)] overflow-hidden bg-oak text-white'>
 			<motion.div
@@ -14,11 +17,11 @@ export default function Hero() {
 				style={{ backgroundImage: "url('/assets/00_interior.jpg')" }}
 			/>
 			<div
-				className='pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(23,19,15,0.34)_0%,rgba(23,19,15,0.04)_35%,rgba(23,19,15,0.28)_100%)]'
+				className='hero-overlay-vertical pointer-events-none absolute inset-0 z-10'
 				aria-hidden='true'
 			/>
 			<div
-				className='pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(15,10,7,0.68)_0%,rgba(15,10,7,0.28)_42%,rgba(15,10,7,0)_74%)]'
+				className='hero-overlay-horizontal pointer-events-none absolute inset-0 z-10'
 				aria-hidden='true'
 			/>
 
@@ -28,7 +31,7 @@ export default function Hero() {
 				transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
 				className='hero-content-enter relative z-20 flex min-h-[calc(100svh-5.5rem)] items-end px-5 pb-[10%] sm:px-10 lg:px-20'>
 				<div className='max-w-xl'>
-					<p className='mb-5 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-[#E9C0B6] sm:text-xs'>
+					<p className='mb-5 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-ember-highlight sm:text-xs'>
 						Ember &amp; Oak · Lagos
 					</p>
 					<h1 className='max-w-lg font-display text-5xl font-semibold leading-[0.94] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl'>
@@ -45,6 +48,7 @@ export default function Hero() {
 						<Button
 							variant='primary'
 							size='lg'
+							onClick={() => router.push('/menu')}
 							className='rounded-[0.625rem] bg-ember px-6 text-sm font-semibold text-white'>
 							Order Now
 						</Button>

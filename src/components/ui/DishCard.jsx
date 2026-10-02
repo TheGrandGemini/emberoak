@@ -12,9 +12,11 @@ export default function DishCard({
 	price,
 	image,
 	alt,
+	available = true,
 	className = '',
 	href,
 	index = 0,
+	onSelect,
 }) {
 	const imageSrc = image
 		? image.startsWith('/')
@@ -24,15 +26,15 @@ export default function DishCard({
 	const safePrice = Number(price ?? 0);
 
 	const cardProps = {
-		className: `dish-card-enter overflow-hidden rounded-[0.875rem] border border-border bg-surface ${className}`,
+		className: `dish-card-enter overflow-hidden rounded-[0.875rem] border border-border bg-surface ${
+			available ? '' : 'opacity-60'
+		} ${className}`,
 		initial: false,
-		whileHover: { y: -5, scale: 1.04 },
-		whileTap: { scale: 0.96 },
+		whileHover: available ? { y: -5, scale: 1.04 } : undefined,
+		whileTap: available ? { scale: 0.96 } : undefined,
 		transition: {
-			type: 'spring',
-			stiffness: 360,
-			damping: 24,
-			delay: index * 0.1,
+			duration: 0.14,
+			ease: 'easeOut',
 		},
 		style: { animationDelay: `${index * 100}ms` },
 	};
@@ -40,6 +42,11 @@ export default function DishCard({
 	const content = (
 		<>
 			<div className='relative aspect-[1.55] w-full overflow-hidden bg-muted'>
+				{!available ? (
+					<div className='absolute left-3 top-3 z-10 inline-flex items-center rounded-full border border-danger-soft bg-danger-soft px-2 py-1 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-ember'>
+						Sold out today
+					</div>
+				) : null}
 				<Image
 					src={imageSrc}
 					alt={alt || name || 'Dish image'}
@@ -52,7 +59,7 @@ export default function DishCard({
 				<h3 className='font-mono text-body-sm font-semibold leading-normal text-oak'>
 					{name}
 				</h3>
-				<p className='font-mono text-caption leading-normal text-[#857c6f] font-normal'>
+				<p className='font-mono text-caption leading-normal text-text-soft font-normal'>
 					{description}
 				</p>
 				<p className='font-mono text-[0.8125rem] font-semibold text-oak '>
@@ -65,13 +72,14 @@ export default function DishCard({
 	return href ? (
 		<MotionLink
 			href={href}
-			className='h-fit'
+			className={`h-fit ${available ? '' : 'cursor-not-allowed'}`}
 			{...cardProps}>
 			{content}
 		</MotionLink>
 	) : (
 		<motion.article
-			className='h-fit'
+			className={`h-fit ${available ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+			onClick={available ? onSelect : undefined}
 			{...cardProps}>
 			{content}
 		</motion.article>

@@ -14,7 +14,7 @@ export default function StorySection() {
 					whileInView={{ opacity: 1, x: 0 }}
 					viewport={{ once: true, amount: 0.25 }}
 					transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-					className='relative aspect-[1.2] w-full max-w-none overflow-hidden rounded-[1.25rem] bg-[#f3f1ed] bg-cover bg-center'
+					className='relative aspect-[1.2] w-full max-w-none overflow-hidden rounded-[1.25rem] bg-surface-warm bg-cover bg-center'
 					style={{ backgroundImage: `url('${storyImage}')` }}
 					aria-label='Placeholder image for the Ember and Oak story'
 				/>

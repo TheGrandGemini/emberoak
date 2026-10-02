@@ -16,6 +16,41 @@
 	--color-warning: #b9812e;
 	--color-danger: #c4293f;
 	--color-info: #4a6fa1;
+	--color-page-soft: #faf9f7;
+	--color-surface-soft: #f7f5f3;
+	--color-surface-warm: #f2f0ec;
+	--color-surface-image: #ddd7cf;
+	--color-skeleton: #e9e6e0;
+	--color-skeleton-light: #efede9;
+	--color-line-soft: #e5e0d9;
+	--color-line-muted: #e3ddd5;
+	--color-line-input: #dfd9d0;
+	--color-text-subtle: #897f72;
+	--color-text-soft: #857c6f;
+	--color-text-faint: #9a9288;
+	--color-text-dark-soft: #514b43;
+	--color-ember-hover: #8f3526;
+	--color-ember-soft: #fbf3f1;
+	--color-danger-soft: #fff1ef;
+	--color-danger-wash: #fdebed;
+	--color-danger-strong: #c53343;
+	--color-success-wash: #edf3e9;
+	--color-success-strong: #55784c;
+	--color-success-border: #668b5d;
+	--color-info-wash: #edf2fa;
+	--color-info-strong: #416da8;
+	--color-info-border: #4c78b8;
+	--color-warning-wash: #fff3e2;
+	--color-warning-strong: #a96813;
+	--color-ember-highlight: #e9c0b6;
+	--color-text-on-dark: #ffffff;
+	--color-hero-overlay: rgba(23, 19, 15, 0.34);
+	--color-hero-overlay-soft: rgba(23, 19, 15, 0.04);
+	--color-hero-overlay-mid: rgba(23, 19, 15, 0.28);
+	--color-hero-overlay-strong: rgba(15, 10, 7, 0.68);
+	--color-hero-overlay-medium: rgba(15, 10, 7, 0.28);
+	--color-not-found-overlay-top: rgba(23, 19, 15, 0.58);
+	--color-not-found-overlay-bottom: rgba(23, 19, 15, 0.78);
 
 	--radius-6: 6px;
 	--radius-10: 10px;
@@ -49,6 +84,41 @@
 	--color-warning: var(--color-warning);
 	--color-danger: var(--color-danger);
 	--color-info: var(--color-info);
+	--color-page-soft: var(--color-page-soft);
+	--color-surface-soft: var(--color-surface-soft);
+	--color-surface-warm: var(--color-surface-warm);
+	--color-surface-image: var(--color-surface-image);
+	--color-skeleton: var(--color-skeleton);
+	--color-skeleton-light: var(--color-skeleton-light);
+	--color-line-soft: var(--color-line-soft);
+	--color-line-muted: var(--color-line-muted);
+	--color-line-input: var(--color-line-input);
+	--color-text-subtle: var(--color-text-subtle);
+	--color-text-soft: var(--color-text-soft);
+	--color-text-faint: var(--color-text-faint);
+	--color-text-dark-soft: var(--color-text-dark-soft);
+	--color-ember-hover: var(--color-ember-hover);
+	--color-ember-soft: var(--color-ember-soft);
+	--color-danger-soft: var(--color-danger-soft);
+	--color-danger-wash: var(--color-danger-wash);
+	--color-danger-strong: var(--color-danger-strong);
+	--color-success-wash: var(--color-success-wash);
+	--color-success-strong: var(--color-success-strong);
+	--color-success-border: var(--color-success-border);
+	--color-info-wash: var(--color-info-wash);
+	--color-info-strong: var(--color-info-strong);
+	--color-info-border: var(--color-info-border);
+	--color-warning-wash: var(--color-warning-wash);
+	--color-warning-strong: var(--color-warning-strong);
+	--color-ember-highlight: var(--color-ember-highlight);
+	--color-text-on-dark: var(--color-text-on-dark);
+	--color-hero-overlay: var(--color-hero-overlay);
+	--color-hero-overlay-soft: var(--color-hero-overlay-soft);
+	--color-hero-overlay-mid: var(--color-hero-overlay-mid);
+	--color-hero-overlay-strong: var(--color-hero-overlay-strong);
+	--color-hero-overlay-medium: var(--color-hero-overlay-medium);
+	--color-not-found-overlay-top: var(--color-not-found-overlay-top);
+	--color-not-found-overlay-bottom: var(--color-not-found-overlay-bottom);
 
 	--font-display: var(--font-display);
 	--font-sans: var(--font-sans);
@@ -307,8 +377,34 @@
 	.menu-dish-card {
 		width: 100%;
 		height: 19.5rem;
-		border: 1px solid #e4e0d9;
+		border: 1px solid var(--color-line-soft);
 		border-radius: 0.875rem;
+	}
+
+	.hero-overlay-vertical {
+		background: linear-gradient(
+			180deg,
+			var(--color-hero-overlay) 0%,
+			var(--color-hero-overlay-soft) 35%,
+			var(--color-hero-overlay-mid) 100%
+		);
+	}
+
+	.hero-overlay-horizontal {
+		background: linear-gradient(
+			90deg,
+			var(--color-hero-overlay-strong) 0%,
+			var(--color-hero-overlay-medium) 42%,
+			transparent 74%
+		);
+	}
+
+	.not-found-overlay {
+		background: linear-gradient(
+			180deg,
+			var(--color-not-found-overlay-top),
+			var(--color-not-found-overlay-bottom)
+		);
 	}
 
 	@media (min-width: 1280px) {

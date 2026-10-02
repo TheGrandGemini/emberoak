@@ -5,30 +5,9 @@ import StorySection from '@/components/layout/StorySection';
 import DishCard from '@/components/ui/DishCard';
 import Section from '@/components/ui/Section';
 import ServiceCard from '@/components/ui/ServiceCard';
+import menuDishes from '@/data/dishes';
 
-const dishes = [
-	{
-		name: 'Suya-Spiced Grilled Chicken',
-		description: 'Charcoal-grilled, yaji spice, pickled onion',
-		price: '₦7,300',
-		image: '/assets/02_chicken.png',
-		alt: 'Suya-spiced grilled chicken served with herbs',
-	},
-	{
-		name: 'Jollof Rice + Grilled Chicken',
-		description: 'Smoked party jollof, char-grilled thigh',
-		price: '₦6,800',
-		image: '/assets/01_jollof_rice.png',
-		alt: 'A bowl of richly colored jollof rice',
-	},
-	{
-		name: 'Peppered Goat Meat + Plantain',
-		description: 'Slow-braised, scotch bonnet, fried plantain',
-		price: '₦8,200',
-		image: '/assets/06_goatmeat.jpg',
-		alt: 'A colorful plate of West African food',
-	},
-];
+const dishes = menuDishes.filter((dish) => dish.featured);
 
 const serviceOptions = [
 	{
@@ -67,7 +46,7 @@ export default function Home() {
 				</Section>
 				<Section
 					title="However you'd like it"
-					className='bg-[#faf9f7] py-20 sm:py-24 lg:py-28'>
+					className='bg-page-soft py-20 sm:py-24 lg:py-28'>
 					<div className='grid grid-cols-1 gap-5 sm:grid-cols-3'>
 						{serviceOptions.map((option, index) => (
 							<ServiceCard

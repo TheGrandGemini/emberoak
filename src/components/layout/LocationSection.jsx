@@ -8,7 +8,7 @@ export default function LocationSection() {
 	return (
 		<Section
 			id='location'
-			className='scroll-mt-22 bg-[#faf9f7] py-20 sm:py-24 lg:py-32'>
+			className='scroll-mt-22 bg-page-soft py-20 sm:py-24 lg:py-32'>
 			<div className='grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20'>
 				<motion.div
 					initial={{ opacity: 0, x: -32 }}

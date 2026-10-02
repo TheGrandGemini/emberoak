@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata = {
 	title: 'Ember & Oak | Lagos',
 	description: 'Open-grill West African dining in the heart of Lagos.',
+	icons: {
+		icon: '/assets/Ember%20%26%20Oak.png',
+		shortcut: '/assets/Ember%20%26%20Oak.png',
+	},
 };
 
 export const viewport = {
