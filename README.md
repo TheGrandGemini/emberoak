@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ember & Oak
 
-## Getting Started
+Ember & Oak is a responsive restaurant website for a Lagos restaurant, built with Next.js. It includes a browsable food menu, a cart and checkout flow, and table reservations.
 
-First, run the development server:
+## Features
+
+- Responsive home page with restaurant story, featured dishes, services, and location details.
+- Menu browsing with category filters, search, dish details, customizations, and availability information.
+- Cart with item configuration, quantity and price summaries.
+- Checkout options for dine-in, takeaway, and delivery.
+- Reservation flow with date, time, party-size selection, confirmation, and calendar event download.
+- Responsive navigation and motion effects.
+- Search-engine and social sharing metadata, plus the branded favicon at `public/favicon.png`.
+
+> **Prototype note:** Menu data, cart state, checkout, and reservation confirmations are implemented in the frontend. Checkout and reservation submissions are demo flows; they do not currently send orders or reservations to a backend or process real payments.
+
+## Requirements
+
+- Node.js compatible with Next.js 16.
+- npm (the repository includes `package-lock.json`).
+
+## Getting started
+
+Install dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+To test on a phone connected to the same network, start the server bound to all network interfaces:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev -- --hostname 0.0.0.0
+```
 
-## Learn More
+Then open the **Network** URL printed by Next.js on the phone. Your computer's firewall must allow the development server connection.
 
-To learn more about Next.js, take a look at the following resources:
+## Available commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Next.js development server. |
+| `npm run build` | Create and verify an optimized production build. |
+| `npm run start` | Serve the production build locally (run `npm run build` first). |
+| `npm run lint` | Run ESLint. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+| Route | Description |
+| --- | --- |
+| `/` | Home page and restaurant information. |
+| `/menu` | Searchable and filterable menu. |
+| `/checkout` | Cart checkout. Accepts an optional `table` query parameter for table-service orders. |
+| `/reservations` | Table reservation form and confirmation. |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The menu also supports `?cart=1` to open the cart when the menu loads.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+```text
+src/
+  app/                 App Router pages, route components, and global styles
+  components/
+    cart/              Cart drawer and cart UI
+    layout/            Header, navigation, logo, and home-page sections
+    ui/                Shared buttons, cards, and section wrapper
+  data/                Restaurant menu data
+  store/               Zustand cart and restaurant state
+public/
+  assets/              Restaurant and dish images
+  favicon.png          Branded site icon
+```
+
+## Deployment
+
+Deploy with [Vercel](https://vercel.com/) by importing the Git repository and using the default Next.js build settings.
+
+Set `NEXT_PUBLIC_SITE_URL` to the canonical public site URL (for example, `https://www.example.com`) in the deployment environment. This gives Open Graph and Twitter previews an absolute URL for the restaurant image. On Vercel, the metadata can also fall back to Vercel's deployment URL variables when this setting is not provided.
+
+## Technology
+
+- Next.js App Router and React
+- Tailwind CSS
+- Framer Motion
+- Zustand
+- Inter and Fraunces fonts
