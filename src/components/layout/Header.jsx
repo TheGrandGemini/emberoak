@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
-import Logo from '@/components/Logo';
+import Logo from '@/components/layout/Logo';
 import CartDrawer from '@/components/cart/CartDrawer';
 import useCartStore from '@/store/cartStore';
 import {

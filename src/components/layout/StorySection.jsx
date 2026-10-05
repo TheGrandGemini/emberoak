@@ -10,7 +10,7 @@ export default function StorySection() {
 		<Section className='bg-surface py-20 sm:py-24 lg:py-32'>
 			<div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20'>
 				<motion.div
-					initial={{ opacity: 0 }}
+					initial={{ opacity: 0, x: -32 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					viewport={{ once: true, amount: 0.25 }}
 					transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}

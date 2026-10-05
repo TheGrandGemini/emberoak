@@ -58,7 +58,7 @@ function DateSelector({ dates, selectedDate, onSelect }) {
 				Date
 			</h2>
 			<div
-				className='flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+				className='flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain pb-2 scrollbar-none [&::-webkit-scrollbar]:hidden'
 				role='group'
 				aria-label='Reservation date'>
 				{dates.map((date) => (
