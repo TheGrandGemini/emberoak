@@ -24,7 +24,7 @@ function ReservationField({
 	const id = label.toLowerCase().replaceAll(' ', '-');
 
 	return (
-		<div>
+		<div className='min-w-0'>
 			<label
 				htmlFor={id}
 				className='mb-2 block font-sans text-xs font-semibold text-primary'>
@@ -38,7 +38,7 @@ function ReservationField({
 				placeholder={placeholder}
 				aria-invalid={Boolean(error)}
 				aria-describedby={error ? `${id}-error` : undefined}
-				className={`h-11 w-full rounded-[0.625rem] border bg-white px-3.5 font-sans text-sm outline-none transition-colors placeholder:text-text-faint focus:border-ember ${error ? 'border-danger' : 'border-line-input'}`}
+				className={`h-12 w-full min-w-0 rounded-[0.625rem] border bg-white px-3.5 font-sans text-base outline-none transition-colors placeholder:text-text-faint focus:border-ember sm:text-sm ${error ? 'border-danger' : 'border-line-input'}`}
 			/>
 			{error ? (
 				<p
@@ -53,26 +53,27 @@ function ReservationField({
 
 function DateSelector({ dates, selectedDate, onSelect }) {
 	return (
-		<div className='mt-7'>
+		<div className='mt-7 min-w-0'>
 			<h2 className='mb-2.5 font-sans text-sm font-semibold text-primary'>
 				Date
 			</h2>
 			<div
-				className='flex gap-2 overflow-x-auto pb-2'
+				className='flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
 				role='group'
 				aria-label='Reservation date'>
 				{dates.map((date) => (
-					<button
+					<motion.button
 						key={date.value}
 						type='button'
 						aria-pressed={selectedDate === date.value}
 						onClick={() => onSelect(date.value)}
-						className={`flex h-14 min-w-14 flex-col items-center justify-center rounded-[0.625rem] border px-2 transition-colors ${selectedDate === date.value ? 'border-2 border-ember bg-ember-soft text-ember' : 'border-line-muted bg-white text-text-dark-soft hover:border-ember'}`}>
+						whileTap={{ scale: 0.96 }}
+						className={`flex h-14 min-w-14 shrink-0 snap-start touch-manipulation flex-col items-center justify-center rounded-[0.625rem] border px-2 transition-colors ${selectedDate === date.value ? 'border-2 border-ember bg-ember-soft text-ember' : 'border-line-muted bg-white text-text-dark-soft hover:border-ember'}`}>
 						<span className='font-sans text-[0.65rem]'>{date.weekday}</span>
 						<span className='mt-0.5 font-sans text-sm font-semibold'>
 							{date.day}
 						</span>
-					</button>
+					</motion.button>
 				))}
 			</div>
 		</div>
@@ -86,18 +87,19 @@ function TimeSelector({ value, onSelect }) {
 				Time
 			</h2>
 			<div
-				className='flex flex-wrap gap-2'
+				className='grid grid-cols-2 gap-2 sm:flex sm:flex-wrap'
 				role='group'
 				aria-label='Reservation time'>
 				{reservationTimes.map((time) => (
-					<button
+					<motion.button
 						key={time}
 						type='button'
 						aria-pressed={value === time}
 						onClick={() => onSelect(time)}
-						className={`min-h-9 rounded-full border px-3.5 font-sans text-xs font-semibold transition-colors ${value === time ? 'border-2 border-ember bg-ember-soft text-ember' : 'border-line-muted bg-white text-text-dark-soft hover:border-ember'}`}>
+						whileTap={{ scale: 0.97 }}
+						className={`min-h-11 touch-manipulation rounded-full border px-3 font-sans text-xs font-semibold transition-colors sm:px-3.5 ${value === time ? 'border-2 border-ember bg-ember-soft text-ember' : 'border-line-muted bg-white text-text-dark-soft hover:border-ember'}`}>
 						{time}
-					</button>
+					</motion.button>
 				))}
 			</div>
 		</div>
@@ -111,24 +113,26 @@ function PartySizeSelector({ value, onChange }) {
 				Party size
 			</h2>
 			<div className='flex h-10 items-center rounded-[0.625rem] border border-line-muted bg-white'>
-				<button
+				<motion.button
 					type='button'
 					aria-label='Decrease party size'
 					disabled={value <= 1}
 					onClick={() => onChange((size) => Math.max(1, size - 1))}
-					className='h-full w-10 border-r border-line-muted text-lg text-text-dark-soft disabled:opacity-40'>
+					whileTap={{ scale: 0.92 }}
+					className='h-full w-11 touch-manipulation border-r border-line-muted text-lg text-text-dark-soft disabled:opacity-40'>
 					−
-				</button>
+				</motion.button>
 				<span className='min-w-10 text-center font-sans text-sm font-semibold text-primary'>
 					{value}
 				</span>
-				<button
+				<motion.button
 					type='button'
 					aria-label='Increase party size'
 					onClick={() => onChange((size) => Math.min(12, size + 1))}
-					className='h-full w-10 border-l border-line-muted text-lg text-text-dark-soft'>
+					whileTap={{ scale: 0.92 }}
+					className='h-full w-11 touch-manipulation border-l border-line-muted text-lg text-text-dark-soft'>
 					+
-				</button>
+				</motion.button>
 			</div>
 		</div>
 	);
@@ -145,7 +149,7 @@ function GuestDetails({
 	updateField,
 }) {
 	return (
-		<div className='mt-6 space-y-4 sm:max-w-lg'>
+		<div className='mt-6 min-w-0 space-y-4 sm:max-w-lg'>
 			<h2 className='font-sans text-sm font-semibold text-primary'>
 				Your details
 			</h2>
@@ -175,7 +179,7 @@ function GuestDetails({
 					value={notes}
 					onChange={(event) => setNotes(event.target.value)}
 					placeholder='E.g. window seat, birthday'
-					className='min-h-20 w-full resize-y rounded-[0.625rem] border border-line-input bg-white px-3.5 py-3 font-sans text-sm outline-none transition-colors placeholder:text-text-faint focus:border-ember'
+					className='min-h-24 w-full min-w-0 resize-y rounded-[0.625rem] border border-line-input bg-white px-3.5 py-3 font-sans text-base outline-none transition-colors placeholder:text-text-faint focus:border-ember sm:text-sm'
 				/>
 			</div>
 		</div>
@@ -204,76 +208,90 @@ export default function ReservationForm({
 	onConfirm,
 }) {
 	return (
-		<motion.div
-			initial={{ opacity: 0, y: 10 }}
-			animate={{ opacity: 1, y: 0 }}
-			exit={{ opacity: 0, y: -6 }}
-			transition={{ duration: 0.24 }}
-			className='mx-auto grid w-full max-w-6xl gap-10 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,0.85fr)] lg:gap-12 lg:py-12'>
-			<section>
-				<h1 className='font-display text-3xl font-semibold text-primary sm:text-4xl'>
-					Reserve a Table
-				</h1>
-				<p className='mt-2 font-sans text-sm text-text-subtle'>
-					Join us at Ember &amp; Oak — Lagos. Open 11 AM – 11 PM, daily.
-				</p>
-				<DateSelector
-					dates={dates}
-					selectedDate={selectedDate}
-					onSelect={onDateChange}
-				/>
-				<TimeSelector
-					value={selectedTime}
-					onSelect={onTimeChange}
-				/>
-				<PartySizeSelector
-					value={partySize}
-					onChange={onPartySizeChange}
-				/>
-				<GuestDetails
-					name={name}
-					setName={setName}
-					phone={phone}
-					setPhone={setPhone}
-					notes={notes}
-					setNotes={setNotes}
-					errors={errors}
-					updateField={updateField}
-				/>
-			</section>
-
-			<motion.aside
-				initial={{ opacity: 0, x: 10 }}
-				animate={{ opacity: 1, x: 0 }}
-				transition={{ duration: 0.24, delay: 0.08 }}
-				className='lg:pt-1'>
-				<div className='lg:sticky lg:top-8'>
-					<ReservationSummary
-						date={dateLabel}
-						time={selectedTime}
-						partySize={partySize}
-						name={name.trim()}
-						reservationId={reservationId}
+		<>
+			<motion.div
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				exit={{ opacity: 0, y: -6 }}
+				transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+				className='mx-auto grid w-full max-w-6xl min-w-0 grid-cols-1 gap-8 px-5 pt-8 pb-28 sm:px-8 sm:pt-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(20rem,0.85fr)] lg:gap-12 lg:py-12'>
+				<section className='min-w-0'>
+					<h1 className='font-display text-3xl font-semibold text-primary sm:text-4xl'>
+						Reserve a Table
+					</h1>
+					<p className='mt-2 max-w-prose font-sans text-sm leading-6 text-text-subtle'>
+						Join us at Ember &amp; Oak — Lagos. Open 11 AM – 11 PM, daily.
+					</p>
+					<DateSelector
+						dates={dates}
+						selectedDate={selectedDate}
+						onSelect={onDateChange}
 					/>
-					{errors.form ? (
-						<p
-							role='alert'
-							className='mt-3 rounded-lg bg-danger-wash px-3 py-2.5 font-sans text-xs text-danger-strong'>
-							{errors.form}
-						</p>
-					) : null}
-					<button
-						type='button'
-						onClick={onConfirm}
-						disabled={isSubmitting}
-						className='mt-4 flex min-h-11 w-full items-center justify-center gap-2 rounded-[0.625rem] bg-ember px-4 font-sans text-sm font-semibold text-white transition-colors hover:bg-ember-hover disabled:opacity-60'>
-						{isSubmitting ? (
-							<span className='h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white' />
+					<TimeSelector
+						value={selectedTime}
+						onSelect={onTimeChange}
+					/>
+					<PartySizeSelector
+						value={partySize}
+						onChange={onPartySizeChange}
+					/>
+					<GuestDetails
+						name={name}
+						setName={setName}
+						phone={phone}
+						setPhone={setPhone}
+						notes={notes}
+						setNotes={setNotes}
+						errors={errors}
+						updateField={updateField}
+					/>
+				</section>
+
+				<motion.aside
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+					className='min-w-0 lg:pt-1'>
+					<div className='lg:sticky lg:top-8'>
+						<ReservationSummary
+							date={dateLabel}
+							time={selectedTime}
+							partySize={partySize}
+							name={name.trim()}
+							reservationId={reservationId}
+						/>
+						{errors.form ? (
+							<p
+								role='alert'
+								className='mt-3 rounded-lg bg-danger-wash px-3 py-2.5 font-sans text-xs text-danger-strong'>
+								{errors.form}
+							</p>
 						) : null}
-						Confirm Reservation
-					</button>
-				</div>
-			</motion.aside>
-		</motion.div>
+						<button
+							type='button'
+							onClick={onConfirm}
+							disabled={isSubmitting}
+							className='mt-4 hidden min-h-12 w-full items-center justify-center gap-2 rounded-[0.625rem] bg-ember px-4 font-sans text-sm font-semibold text-white transition-colors hover:bg-ember-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember/40 disabled:opacity-60 lg:flex'>
+							{isSubmitting ? (
+								<span className='h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white' />
+							) : null}
+							Confirm Reservation
+						</button>
+					</div>
+				</motion.aside>
+			</motion.div>
+			<div className='fixed inset-x-0 bottom-0 z-30 border-t border-line-soft bg-page-soft/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur-sm lg:hidden'>
+				<button
+					type='button'
+					onClick={onConfirm}
+					disabled={isSubmitting}
+					className='flex min-h-12 w-full touch-manipulation items-center justify-center gap-2 rounded-[0.625rem] bg-ember px-4 font-sans text-sm font-semibold text-white transition-colors hover:bg-ember-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember/40 disabled:opacity-60'>
+					{isSubmitting ? (
+						<span className='h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white' />
+					) : null}
+					Confirm Reservation
+				</button>
+			</div>
+		</>
 	);
 }
